@@ -50,8 +50,8 @@ public class DateBeforeCurrent {
             if (family.getHusband() != null && family.getWife() != null){
                 List events = family.getEvents();
                 if(events.size() != 0) {
-                    String marrige = ((FamilyEvent) events.get(0)).getDate().toString();
-                    if(Integer.parseInt(marrige.substring(marrige.length() - 4)) > currentyear){
+                    String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
+                    if(Integer.parseInt(marriage.substring(marriage.length() - 4)) > currentyear){
                         if(!errorperson.contains(family.getHusband()) && !errorperson.contains(family.getWife())){
                             errorperson.add(family.getHusband().getIndividual());
                             errorperson.add(family.getWife().getIndividual());
