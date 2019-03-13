@@ -1,4 +1,4 @@
-package org.Gedom;
+package org.Gedcom;
 
 import junit.framework.TestCase;
 import org.Gedcom.BirthBeforeMarriage;

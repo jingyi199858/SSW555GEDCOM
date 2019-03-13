@@ -1,4 +1,4 @@
-package org.Gedom;
+package org.Gedcom;
 
 import org.gedcom4j.exception.GedcomParserException;
 import org.junit.Test;
