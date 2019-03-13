@@ -32,45 +32,43 @@ public class DateBeforeCurrent {
         for(Individual individual: everybody){
             if(individual.getEventsOfType(IndividualEventType.BIRTH).size() != 0) {
                 List BIRTH = individual.getEventsOfType(IndividualEventType.BIRTH);
-                String birth = ((IndividualEvent) BIRTH.get(0)).getDate().toString();
-                if(Integer.parseInt(birth.substring(birth.length() - 4)) > currentyear){
-                    errorperson.add(individual);
-                }
+                addErrorPerson(currentyear, errorperson, individual, BIRTH);
             }
             if(individual.getEventsOfType(IndividualEventType.DEATH).size() != 0) {
                 List DEATH = individual.getEventsOfType(IndividualEventType.DEATH);
-                String death = ((IndividualEvent) DEATH.get(0)).getDate().toString();
-                if(Integer.parseInt(death.substring(death.length() - 4)) > currentyear){
-                    errorperson.add(individual);
-                }
+                addErrorPerson(currentyear, errorperson, individual, DEATH);
             }
         }
-
-        List<Family> everyfamily = new ArrayList<Family>(g.getFamilies().values());
         for (Family family : g.getFamilies().values()){
             if (family.getHusband() != null && family.getWife() != null){
                 List events = family.getEvents();
                 if(events.size() != 0) {
-                    String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
-                    if(Integer.parseInt(marriage.substring(marriage.length() - 4)) > currentyear){
-                        if(!errorperson.contains(family.getHusband()) && !errorperson.contains(family.getWife())){
-                            errorperson.add(family.getHusband().getIndividual());
-                            errorperson.add(family.getWife().getIndividual());
-                        }
-                    }if(events.size() > 1){
-                        String divorce = ((FamilyEvent) events.get(1)).getDate().toString();
-                        if(Integer.parseInt(divorce.substring(divorce.length() - 4)) > currentyear){
-                            if(!errorperson.contains(family.getHusband()) && !errorperson.contains(family.getWife())){
-                                errorperson.add(family.getHusband().getIndividual());
-                                errorperson.add(family.getWife().getIndividual());
-                            }
-                        }
+                    addErrorFamily(currentyear, errorperson, family, events, 0);
+                    if(events.size() > 1){
+                        addErrorFamily(currentyear, errorperson, family, events, 1);
                     }
                 }
             }
         }
 
         return errorperson;
+    }
+
+    private static void addErrorFamily(int currentyear, ArrayList<Individual> errorperson, Family family, List events, int i) {
+        String marriage = ((FamilyEvent) events.get(i)).getDate().toString();
+        if(Integer.parseInt(marriage.substring(marriage.length() - 4)) > currentyear){
+            if(!errorperson.contains(family.getHusband()) && !errorperson.contains(family.getWife())){
+                errorperson.add(family.getHusband().getIndividual());
+                errorperson.add(family.getWife().getIndividual());
+            }
+        }
+    }
+
+    private static void addErrorPerson(int currentyear, ArrayList<Individual> errorperson, Individual individual, List BIRTH) {
+        String birth = ((IndividualEvent) BIRTH.get(0)).getDate().toString();
+        if(Integer.parseInt(birth.substring(birth.length() - 4)) > currentyear){
+            errorperson.add(individual);
+        }
     }
 
     public static void main(String[] args) throws IOException, GedcomParserException {
