@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * User story 4
+ */
 public class MarriageBeforeDivorce {
     public static ArrayList beforeDivorce(String file) throws IOException, GedcomParserException {
         ArrayList<Individual> errorperson = new ArrayList<Individual>();

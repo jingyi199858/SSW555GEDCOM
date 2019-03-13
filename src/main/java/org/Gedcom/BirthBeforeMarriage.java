@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * Author Yi Jing
+ * User story 2
  */
 public class BirthBeforeMarriage {
     private static Scanner scan;

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * User Story 6
+ */
 public class DivorceBeforeDeath {
     public static ArrayList beforeDeath(String file) throws IOException, GedcomParserException {
         ArrayList<Individual> errorperson = new ArrayList<Individual>();

@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Author: Yi Jing
+ * User story 1
  */
 public class DateBeforeCurrent {
     /**
