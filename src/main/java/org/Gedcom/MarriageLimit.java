@@ -1,10 +1,7 @@
 package org.Gedcom;
 
 import org.gedcom4j.exception.GedcomParserException;
-import org.gedcom4j.model.Family;
-import org.gedcom4j.model.FamilyEvent;
-import org.gedcom4j.model.Gedcom;
-import org.gedcom4j.model.IndividualEvent;
+import org.gedcom4j.model.*;
 import org.gedcom4j.model.enumerations.IndividualEventType;
 import org.gedcom4j.parser.GedcomParser;
 
@@ -36,21 +33,23 @@ public class MarriageLimit {
         GedcomParser gp = new GedcomParser();
         gp.load(file);
         Gedcom g = gp.getGedcom();
-        List<Family> everyfamily = new ArrayList<Family>(g.getFamilies().values());
         for (Family family : g.getFamilies().values()) {
             List events = family.getEvents();
             String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
             if(family.getHusband().getIndividual().getEventsOfType(IndividualEventType.BIRTH).size() > 0) {
-                String husbandbirth = family.getHusband().getIndividual().getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
-                marriageTime.add(Integer.parseInt(marriage.substring(marriage.length()-4)) - Integer.parseInt(husbandbirth.substring(husbandbirth.length()-4)));
+                addMarriageTime(marriageTime, marriage, family.getHusband(), family);
             }
             if(family.getWife().getIndividual().getEventsOfType(IndividualEventType.BIRTH).size() > 0) {
-                String wifebirth = family.getWife().getIndividual().getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
-                marriageTime.add(Integer.parseInt(marriage.substring(marriage.length()-4)) - Integer.parseInt(wifebirth.substring(wifebirth.length()-4)));
+                addMarriageTime(marriageTime, marriage, family.getWife(), family);
             }
         }
 
         return marriageTime;
+    }
+
+    private static void addMarriageTime(ArrayList<Integer> marriageTime, String marriage, IndividualReference husband, Family family) {
+        String husbandbirth = husband.getIndividual().getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
+        marriageTime.add(Integer.parseInt(marriage.substring(marriage.length()-4)) - Integer.parseInt(husbandbirth.substring(husbandbirth.length()-4)));
     }
 
     /*public static void main(String[] args) throws IOException, GedcomParserException {
