@@ -13,7 +13,10 @@ import java.util.List;
 
 public class LifeLimit {
     /**
+     * Yi Jing
+     * User Story 07
      * Death should be less than 150 years after birth for dead people, and current date should be less than 150 years after birth for all living people.
+     * If detected more than 150 years old or current date more than 150 years, return false. If no failure, return true.
      * @return
      */
     public static boolean lifeLimit(String file) throws IOException, GedcomParserException {
@@ -36,10 +39,19 @@ public class LifeLimit {
         List<Individual> everybody = new ArrayList<Individual>(g.getIndividuals().values());
         for (Individual individual : everybody) {
             if(individual.getEventsOfType(IndividualEventType.BIRTH).size() != 0 && individual.getEventsOfType(IndividualEventType.DEATH).size() != 0){
-                int life = Integer.parseInt(((IndividualEvent) individual.getEventsOfType(IndividualEventType.BIRTH).get(0)).getDate().toString()) - Integer.parseInt(((IndividualEvent) individual.getEventsOfType(IndividualEventType.BIRTH).get(0)).getDate().toString());
+                String birth = individual.getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
+                String death = individual.getEventsOfType(IndividualEventType.DEATH).get(0).getDate().toString();
+                int life = Integer.parseInt(death.substring(death.length()-4)) - Integer.parseInt(birth.substring(birth.length()-4));
+                System.out.println(life);
                 lifetime.add(life);
             }
         }
         return lifetime;
+    }
+
+
+
+    public static void main(String[] args) throws IOException, GedcomParserException {
+        lifeTime("src/resources/GEDCOMsourcefile/bronte.ged");
     }
 }

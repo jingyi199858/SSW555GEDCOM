@@ -23,7 +23,7 @@ public class DivorceBeforeDeath {
             List events = family.getEvents();
             List husbanddeath = family.getHusband().getIndividual().getEventsOfType(IndividualEventType.DEATH);
             List wifedeath = family.getWife().getIndividual().getEventsOfType(IndividualEventType.DEATH);
-            if(events.size() > 1) {
+            if(events.size() >= 1) {
                 String divorce = ((FamilyEvent) events.get(1)).getDate().toString();
                 String husbandDeath = ((IndividualEvent) husbanddeath.get(0)).getDate().toString();
                 String wifeDeath = ((IndividualEvent) wifedeath.get(0)).getDate().toString();

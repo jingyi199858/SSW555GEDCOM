@@ -23,7 +23,7 @@ public class MarriageBeforeDivorce {
         List<Family> everyfamily = new ArrayList<Family>(g.getFamilies().values());
         for (Family family : g.getFamilies().values()){
             List events = family.getEvents();
-            if(events.size() > 1) {
+            if(events.size() >= 1) {
                 String divorce = ((FamilyEvent) events.get(1)).getDate().toString();
                 String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
                 if (Integer.parseInt(divorce.substring(divorce.length() - 4)) > Integer.parseInt(marriage.substring(divorce.length() - 4))) {
