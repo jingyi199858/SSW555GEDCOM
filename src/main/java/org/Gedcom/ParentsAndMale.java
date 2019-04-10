@@ -15,6 +15,7 @@ import java.io.IOException;
  */
 public class ParentsAndMale {
     /**
+     * US12
      * Mother should be less than 60 years older than her children and father should be less than 80 years older than his children
      * @param file
      * @return
@@ -24,17 +25,24 @@ public class ParentsAndMale {
         gp.load(file);
         Gedcom g = gp.getGedcom();
         for (Family family : g.getFamilies().values()){
-            if(family.getHusband() != null && family.getChildren().size() != 0){
+            if(family.getHusband() != null && family.getWife() != null){
                 Individual dad = family.getHusband().getIndividual();
-                if(dad.getEventsOfType(IndividualEventType.BIRTH).size() != 0){
-                    for(int i = 0; i < family.getChildren().size(); i++){
-                        Individual child = family.getChildren().get(i).getIndividual();
-                        if(child.getEventsOfType(IndividualEventType.BIRTH).size() != 0){
-                            String dadbirth = dad.getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
-                            String childbirth = child.getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
-                            int different = Integer.parseInt(dadbirth.substring(dadbirth.length()-4)) - Integer.parseInt(childbirth.substring(childbirth.length()-4));
-                            if(different > 80){
-                                return false;
+                Individual mom = family.getWife().getIndividual();
+                if(dad.getEventsOfType(IndividualEventType.BIRTH).size() != 0 && mom.getEventsOfType(IndividualEventType.BIRTH).size() != 0){
+                    if( family.getChildren() != null) {
+                        if(family.getChildren().size() != 0) {
+                            for (int i = 0; i < family.getChildren().size(); i++) {
+                                Individual child = family.getChildren().get(i).getIndividual();
+                                if (child.getEventsOfType(IndividualEventType.BIRTH).size() != 0) {
+                                    String dadbirth = dad.getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
+                                    String mombirth = mom.getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
+                                    String childbirth = child.getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
+                                    int daddifference = Integer.parseInt(dadbirth.substring(dadbirth.length() - 4)) - Integer.parseInt(childbirth.substring(childbirth.length() - 4));
+                                    int momdifference = Integer.parseInt(mombirth.substring(mombirth.length() - 4)) - Integer.parseInt(childbirth.substring(childbirth.length() - 4));
+                                    if (daddifference > 80 || momdifference > 60) {
+                                        return false;
+                                    }
+                                }
                             }
                         }
                     }
@@ -45,6 +53,7 @@ public class ParentsAndMale {
     }
 
     /**
+     * US16
      * All male members of a family should have the same last name
      * @param file
      * @return
@@ -53,7 +62,8 @@ public class ParentsAndMale {
         return true;
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException, GedcomParserException {
+        System.out.println(parentsNotTooOld("src/resources/GEDCOMsourcefile/bronte.ged"));
+        System.out.println(parentsNotTooOld("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte1.ged"));
     }
 }
