@@ -26,7 +26,7 @@ public class MarriageBeforeDivorce {
             if(events.size() >= 1) {
                 String divorce = ((FamilyEvent) events.get(1)).getDate().toString();
                 String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
-                if (Integer.parseInt(divorce.substring(divorce.length() - 4)) > Integer.parseInt(marriage.substring(divorce.length() - 4))) {
+                if (Integer.parseInt(divorce.substring(divorce.length() - 4)) > Integer.parseInt(marriage.substring(marriage.length() - 4))) {
                     errorperson.add(family.getHusband().getIndividual());
                     errorperson.add(family.getWife().getIndividual());
                 }

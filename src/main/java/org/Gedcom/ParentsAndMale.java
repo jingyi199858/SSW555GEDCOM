@@ -71,7 +71,6 @@ public class ParentsAndMale {
                             Individual child = family.getChildren().get(i).getIndividual();
                             String childlastname = child.getSurnames().toString();
                             if(!childlastname.equals(lastname)){
-                                System.out.println(lastname + "    " +  childlastname);
                                 return false;
                             }
                         }
@@ -80,14 +79,5 @@ public class ParentsAndMale {
             }
         }
         return true;
-    }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        /*System.out.println(parentsNotTooOld("src/resources/GEDCOMsourcefile/bronte.ged"));
-        System.out.println(parentsNotTooOld("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte1.ged"));
-        System.out.println(parentsNotTooOld("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronteus12.ged"));
-        System.out.println(parentsNotTooOld("src/resources/GEDCOMsourcefile/shakespeare.ged"));*/
-        System.out.println(maleLastName("src/resources/GEDCOMsourcefile/bronte.ged"));
-        //System.out.println(maleLastName("src/resources/GEDCOMsourcefile/shakespeare.ged"));
     }
 }
