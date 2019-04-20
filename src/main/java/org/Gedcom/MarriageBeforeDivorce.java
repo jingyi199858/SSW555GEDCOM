@@ -23,7 +23,7 @@ public class MarriageBeforeDivorce {
         List<Family> everyfamily = new ArrayList<Family>(g.getFamilies().values());
         for (Family family : g.getFamilies().values()){
             List events = family.getEvents();
-            if(events.size() >= 1) {
+            if (events != null && events.size() > 1 && ((FamilyEvent) events.get(0)).getDate() != null && ((FamilyEvent) events.get(1)).getDate() != null) {
                 String divorce = ((FamilyEvent) events.get(1)).getDate().toString();
                 String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
                 if (Integer.parseInt(divorce.substring(divorce.length() - 4)) > Integer.parseInt(marriage.substring(marriage.length() - 4))) {
@@ -33,5 +33,9 @@ public class MarriageBeforeDivorce {
             }
         }
         return errorperson;
+    }
+
+    public static void main(String[] args) throws IOException, GedcomParserException {
+        System.out.println(beforeDivorce("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte5.ged"));
     }
 }

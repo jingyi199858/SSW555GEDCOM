@@ -24,20 +24,26 @@ public class MarriageBeforeDeath {
         Gedcom g = gp.getGedcom();
         for (Family family : g.getFamilies().values()) {
             List events = family.getEvents();
-            String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
-            if(family.getHusband().getIndividual().getEventsOfType(IndividualEventType.DEATH).size() > 0) {
-                String husbanddeath = family.getHusband().getIndividual().getEventsOfType(IndividualEventType.DEATH).get(0).getDate().toString();
-                if(Integer.parseInt(marriage.substring(marriage.length()-4)) > Integer.parseInt(husbanddeath.substring(husbanddeath.length()-4))){
-                    return false;
+            if (events != null && events.size() > 0 && ((FamilyEvent) events.get(0)).getDate() != null) {
+                String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
+                if (family.getHusband().getIndividual().getEventsOfType(IndividualEventType.DEATH).size() > 0) {
+                    String husbanddeath = family.getHusband().getIndividual().getEventsOfType(IndividualEventType.DEATH).get(0).getDate().toString();
+                    if (Integer.parseInt(marriage.substring(marriage.length() - 4)) > Integer.parseInt(husbanddeath.substring(husbanddeath.length() - 4))) {
+                        return false;
+                    }
                 }
-            }
-            if(family.getWife().getIndividual().getEventsOfType(IndividualEventType.DEATH).size() > 0) {
-                String wifedeath = family.getWife().getIndividual().getEventsOfType(IndividualEventType.DEATH).get(0).getDate().toString();
-                if(Integer.parseInt(marriage.substring(marriage.length()-4)) > Integer.parseInt(wifedeath.substring(wifedeath.length()-4))){
-                    return false;
+                if (family.getWife().getIndividual().getEventsOfType(IndividualEventType.DEATH).size() > 0) {
+                    String wifedeath = family.getWife().getIndividual().getEventsOfType(IndividualEventType.DEATH).get(0).getDate().toString();
+                    if (Integer.parseInt(marriage.substring(marriage.length() - 4)) > Integer.parseInt(wifedeath.substring(wifedeath.length() - 4))) {
+                        return false;
+                    }
                 }
             }
         }
         return true;
+    }
+
+    public static void main(String[] args) throws IOException, GedcomParserException {
+        System.out.println(marriageBeforeDeath("src/resources/GEDCOMsourcefile/shakespeare.ged"));
     }
 }

@@ -35,12 +35,14 @@ public class MarriageLimit {
         Gedcom g = gp.getGedcom();
         for (Family family : g.getFamilies().values()) {
             List events = family.getEvents();
-            String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
-            if(family.getHusband().getIndividual().getEventsOfType(IndividualEventType.BIRTH).size() > 0) {
-                addMarriageTime(marriageTime, marriage, family.getHusband(), family);
-            }
-            if(family.getWife().getIndividual().getEventsOfType(IndividualEventType.BIRTH).size() > 0) {
-                addMarriageTime(marriageTime, marriage, family.getWife(), family);
+            if (events != null && events.size() > 0 && ((FamilyEvent) events.get(0)).getDate() != null) {
+                String marriage = ((FamilyEvent) events.get(0)).getDate().toString();
+                if (family.getHusband().getIndividual().getEventsOfType(IndividualEventType.BIRTH).size() > 0) {
+                    addMarriageTime(marriageTime, marriage, family.getHusband(), family);
+                }
+                if (family.getWife().getIndividual().getEventsOfType(IndividualEventType.BIRTH).size() > 0) {
+                    addMarriageTime(marriageTime, marriage, family.getWife(), family);
+                }
             }
         }
 
@@ -52,7 +54,7 @@ public class MarriageLimit {
         marriageTime.add(Integer.parseInt(marriage.substring(marriage.length()-4)) - Integer.parseInt(husbandbirth.substring(husbandbirth.length()-4)));
     }
 
-    /*public static void main(String[] args) throws IOException, GedcomParserException {
-        marriageTime("src/resources/GEDCOMsourcefile/bronte.ged");
-    }*/
+    public static void main(String[] args) throws IOException, GedcomParserException {
+        System.out.println(marriageLimit("src/resources/GEDCOMsourcefile/shakespeare.ged"));
+    }
 }
