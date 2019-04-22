@@ -78,9 +78,4 @@ public class UniquePerNdFam {
         }
         return true;
     }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        System.out.println(uniqueFam("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte234.ged"));
-        System.out.println(uniquePerson("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte234.ged"));
-    }
 }

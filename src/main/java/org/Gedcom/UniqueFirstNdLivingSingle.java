@@ -74,12 +74,4 @@ public class UniqueFirstNdLivingSingle {
         everybody.removeAll(spouse);
         return everybody;
     }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        List a = livingSingle("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte6.ged");
-        for(int j = 0; j < a.size(); j++){
-            System.out.println(a.get(j));
-        }
-        System.out.println(uniqueFirstName("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte1.ged"));
-    }
 }
