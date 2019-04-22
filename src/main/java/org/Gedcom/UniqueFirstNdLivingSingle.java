@@ -44,9 +44,9 @@ public class UniqueFirstNdLivingSingle {
                         childrennames.add(name);
                     }
                 }
-            }
-            if(childrenbirth.size() < family.getChildren().size() || childrennames.size() < family.getChildren().size()){
-                return false;
+                if(childrenbirth.size() < family.getChildren().size() || childrennames.size() < family.getChildren().size()){
+                    return false;
+                }
             }
         }
         return true;
@@ -75,10 +75,11 @@ public class UniqueFirstNdLivingSingle {
         return everybody;
     }
 
-    /*public static void main(String[] args) throws IOException, GedcomParserException {
+    public static void main(String[] args) throws IOException, GedcomParserException {
         List a = livingSingle("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte6.ged");
         for(int j = 0; j < a.size(); j++){
             System.out.println(a.get(j));
         }
-    }*/
+        System.out.println(uniqueFirstName("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte1.ged"));
+    }
 }
