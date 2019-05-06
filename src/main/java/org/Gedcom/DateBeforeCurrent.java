@@ -27,8 +27,7 @@ public class DateBeforeCurrent {
         GedcomParser gp = new GedcomParser();
         gp.load(file);
         Gedcom g = gp.getGedcom();
-        List<Individual> everybody = new ArrayList<Individual>(g
-                .getIndividuals().values());
+        List<Individual> everybody = new ArrayList<Individual>(g.getIndividuals().values());
         for(Individual individual: everybody){
             if(individual.getEventsOfType(IndividualEventType.BIRTH).size() != 0) {
                 List BIRTH = individual.getEventsOfType(IndividualEventType.BIRTH);
@@ -69,9 +68,5 @@ public class DateBeforeCurrent {
         if(Integer.parseInt(birth.substring(birth.length() - 4)) > currentyear){
             errorperson.add(individual);
         }
-    }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        System.out.println(beforeCurrent("D:\\SSw555Group5\\Sprint1\\GEDCOMsourcefile\\bronte.ged"));
     }
 }

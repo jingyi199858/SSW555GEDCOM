@@ -21,7 +21,7 @@ public class DateBeforeCurrentTest {
     @Test
     public void errorTest() throws IOException, GedcomParserException {
         ArrayList<String> list = new ArrayList<String>();
-        list.add("Brontë, Patrick aka Brunty, spouse of Branwell, Maria, child of McClory, Eleanor and Brunty, Hugh, b.17 MAR 1813, d.7 JUN 2077");
+        list.add("Brontë, Patrick aka Brunty, spouse of Branwell, Maria, child of McClory, Eleanor and Brunty, Hugh, b.17 MAR 2077, d.7 JUN 1034");
         assertEquals(list.toString(),beforeCurrent("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte1.ged").toString());
     }
 }
