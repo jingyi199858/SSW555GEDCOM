@@ -15,6 +15,6 @@ public class DivorceBeforeDeathTest {
     @Test
     public void beforeDeathTest() throws IOException, GedcomParserException {
         ArrayList list = new ArrayList();
-        assertEquals(beforeDeath("src/resources/GEDCOMsourcefile/bronte.ged"),list);
+        assertEquals(list, beforeDeath("src/resources/GEDCOMsourcefile/bronte.ged"));
     }
 }
