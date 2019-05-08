@@ -2,6 +2,7 @@ package org.Gedcom;
 
 import org.gedcom4j.exception.GedcomParserException;
 import org.gedcom4j.model.*;
+import org.gedcom4j.model.Gedcom;
 import org.gedcom4j.model.enumerations.IndividualEventType;
 import org.gedcom4j.parser.GedcomParser;
 
@@ -16,7 +17,7 @@ public class MarriageLimit {
      * Marriage should be at least 14 years after birth of both spouses (parents must be at least 14 years old)
      *
      * @param file
-     * @return
+     * @return boolean
      */
     public static boolean marriageLimit(String file) throws IOException, GedcomParserException {
         ArrayList<Integer> list = marriageTime(file);
