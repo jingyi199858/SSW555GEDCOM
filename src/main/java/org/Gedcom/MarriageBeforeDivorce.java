@@ -34,8 +34,4 @@ public class MarriageBeforeDivorce {
         }
         return errorperson;
     }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        System.out.println(beforeDivorce("src/resources/GEDCOMsourcefile/EditedFamilyTree/bronte5.ged"));
-    }
 }

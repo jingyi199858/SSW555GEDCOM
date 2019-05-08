@@ -42,8 +42,4 @@ public class MarriageBeforeDeath {
         }
         return true;
     }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        System.out.println(marriageBeforeDeath("src/resources/GEDCOMsourcefile/shakespeare.ged"));
-    }
 }

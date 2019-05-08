@@ -48,10 +48,4 @@ public class LifeLimit {
         }
         return lifetime;
     }
-
-
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        lifeTime("src/resources/GEDCOMsourcefile/bronte.ged");
-    }
 }

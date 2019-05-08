@@ -62,8 +62,4 @@ public class BirthBeforeMarriage {
         }
         return true;
     }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        birthMarri("src/resources/GEDCOMsourcefile/bronte.ged");
-    }
 }

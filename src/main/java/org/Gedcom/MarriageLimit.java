@@ -53,8 +53,4 @@ public class MarriageLimit {
         String husbandbirth = husband.getIndividual().getEventsOfType(IndividualEventType.BIRTH).get(0).getDate().toString();
         marriageTime.add(Integer.parseInt(marriage.substring(marriage.length()-4)) - Integer.parseInt(husbandbirth.substring(husbandbirth.length()-4)));
     }
-
-    public static void main(String[] args) throws IOException, GedcomParserException {
-        System.out.println(marriageLimit("src/resources/GEDCOMsourcefile/shakespeare.ged"));
-    }
 }
