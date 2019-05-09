@@ -4,14 +4,11 @@ import org.gedcom4j.exception.GedcomParserException;
 import org.gedcom4j.model.Family;
 import org.gedcom4j.model.Gedcom;
 import org.gedcom4j.model.Individual;
-import org.gedcom4j.model.enumerations.IndividualAttributeType;
 import org.gedcom4j.model.enumerations.IndividualEventType;
 import org.gedcom4j.parser.GedcomParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * US14

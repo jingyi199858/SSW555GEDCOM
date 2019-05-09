@@ -7,13 +7,9 @@ import org.gedcom4j.model.Gedcom;
 import org.gedcom4j.model.enumerations.IndividualEventType;
 import org.gedcom4j.parser.GedcomParser;
 
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Author Yi Jing
@@ -48,12 +44,16 @@ public class BirthBeforeMarriage {
                     if(!husbandbirth.equals("") && !husbandbirth.equals(null)){
                         int husbanddate = Integer.parseInt(husbandbirth.substring(husbandbirth.length() - 4));
                         if(husbanddate > marriagedate){
+                            System.out.println(family.getEvents().toString());
+                            System.out.println(family.getHusband().toString());
                             return false;
                         }
                     }
                     if(!wifebirth.equals("") && !wifebirth.equals(null)){
                         int wifedate = Integer.parseInt(wifebirth.substring(wifebirth.length() - 4));
                         if(wifedate > marriagedate){
+                            System.out.println(family.getEvents().toString());
+                            System.out.println(family.getWife().toString());
                             return false;
                         }
                     }

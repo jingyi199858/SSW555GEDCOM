@@ -8,7 +8,6 @@ import org.gedcom4j.model.enumerations.IndividualEventType;
 import org.gedcom4j.parser.GedcomParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MarriageBeforeDeath {
